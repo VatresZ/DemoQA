@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test - Suite">
+	<test name="testing new page">
+		<classes>
+			<class name="tests.HomePageTest" />
+			<class name="tests.ProductPageTest" />
+			<class name="tests.CheckOutPageTest" />
+			<class name="tests.ProfilePageTest" />
+			<class name="tests.MyProfilePageTest" />
+		</classes>
+	</test>
+</suite>
