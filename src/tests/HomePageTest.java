@@ -10,27 +10,21 @@ import pages.ProductPage;
 import pages.ProfilePage;
 
 public class HomePageTest extends Browser {
-HomePage home;
-ProductPage product;
-CheckOutPage checkout;
-ProfilePage profile;
-MyProfilePage myprofile;
+	HomePage home;
+	ProductPage product;
+	CheckOutPage checkout;
+	ProfilePage profile;
+	MyProfilePage myprofile;
 
-	
-  @Test(priority=0) 
-  public void goToHome() {
-	  driver.get("http://store.demoqa.com/");
-	  
-	  home = new HomePage(driver);
-	  home.submit();
-	  
-//	  home = new HomePage(driver);
-	  assertTrue(home.isMouseMessage());
-	  
-//	  home = new HomePage(driver);
-	  assertTrue(home.isPhone5Message());
-	  
-//	  home = new HomePage(driver);
-	  assertTrue(home.isPodMessage());
-  }
+	@Test(priority = 0)
+	public void goToHome() {
+		driver.get("http://store.demoqa.com/");
+
+		home = new HomePage(driver);
+		home.submit();
+
+		assertTrue(home.isMouseMessage());
+		assertTrue(home.isPhone5Message());
+		assertTrue(home.isPodMessage());
+	}
 }

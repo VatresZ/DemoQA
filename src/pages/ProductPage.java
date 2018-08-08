@@ -1,104 +1,91 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 public class ProductPage extends PageObject {
-//	2_ProductPage
-//	Idi na Product Category i izaberi dve kategorije i po jedan artikal iz svake kategorije ubaci u korpu 
-//	(observe-uj da je dobar broj u kopri)
+
 	WebDriverWait wait = new WebDriverWait(driver, 10);
-	
+
 	public ProductPage(WebDriver driver) {
 		super(driver);
 	}
-	 
-	// ***************elementi
-//	product category
-//	@FindBy(xpath = "html/body/div[2]/div/div/header/nav/ul/li[2]/a")
-//	WebElement productCategory;
 
-//	WebDriverWait wait = new WebDriverWait(driver, 10);
-//	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"menu-item-33\"]/a")));
-//	WebElement productCategory = driver.findElement(By.xpath("//*[@id=\"menu-item-33\"]/a"));
-//	
-//	Actions builder = new Actions(driver);
-//	builder.moveToElement(product).build().perform();
-//	
-//	wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("li#menu-item-36 > a")));
-//	WebElement iPads = driver.findElement(By.cssSelector("li#menu-item-36 > a"));
-//	iPads.click();
-//	
-	
-    Actions builder = new Actions(driver);
-    WebElement productCategory = driver.findElement(By.xpath("//*[@id=\"menu-item-33\"]/a"));
-//    WebElement iPads = driver.findElement(By.cssSelector("#menu-item-36 > a")).click();
-//    Action hover = builder.moveToElement(productCategory)
-    		  Action hover = builder.moveToElement(productCategory).click()
-    		.build();
-    		
-//*************************
-//    			WebDriverWait wait = new WebDriverWait(driver, 10);
-//    			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"block_top_menu\"]/ul/li[1]/a")));
-//    			WebElement women = driver.findElement(By.xpath("//*[@id=\"block_top_menu\"]/ul/li[1]/a"));
-//    			//4. tacka
-//    			Actions builder = new Actions(driver);
-//    			
-//    			builder.moveToElement(women).build().perform();
-//    			//5 tacka
-//    			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"block_top_menu\"]/ul/li[1]/ul/li[1]/ul/li[1]/a")));
-//    			WebElement tShirts = driver.findElement(By.xpath("//*[@id=\"block_top_menu\"]/ul/li[1]/ul/li[1]/ul/li[1]/a"));
-//    			tShirts.click();
+	@FindBy(xpath = "//*[@id=\"menu-item-33\"]/a")
+	WebElement productCategory;
 
-	
-//******************	
-////	klik na iPads
-	@FindBy(css = "#menu-item-36>a")               
-	WebElement iPads;
+	@FindBy(xpath = "//*[@id=\"menu-item-35\"]/a")
+	WebElement iMacs;
 
-    
-//	klik na 1 artikal za korpu
-//	@FindBy(css = "html/body/div[2]/div/div/div/div/div[1]/article/div/div/div[4]/div[2]/form/div[2]/div[1]/span/input")
-	@FindBy(xpath = "html/body/div[2]/div/div/div/div/div[1]/article/div/div/div[4]/div[2]/form/div[2]/div[1]/span/input")               
-	WebElement addToCart1;	
-	
-//	iMacs
-	@FindBy(css = "#menu-item-35>a")
-	WebElement iMacs;	
-	
-//	klik na 2 artikal za korpu
-	@FindBy(xpath = "html/body/div[2]/div/div/div/div/div[1]/article/div/div/div[3]/div[2]/form/div[2]/div[1]/span/input")
-	WebElement addToCart2;	
-//	klik na Checkout
-	@FindBy(xpath = "html/body/div[2]/div/div/header/div[1]/a")               
-	WebElement Checkout;
-	
-//	metoda koja definise sta se radi nad elementima
-	public void submit() {
-		productCategory.click();
-		iPads.click();
-		addToCart1.click();
+	@FindBy(css = "input[name='Buy']")
+	WebElement add_iMac;
+
+	@FindBy(xpath = "//*[@id=\"default_products_page_container\"]/div[3]/div[2]/form/div[2]/div[1]/div[2]/p")
+	WebElement successText;
+
+	@FindBy(css = "#menu-item-37 > a")
+	WebElement iPhones;
+
+	@FindBy(xpath = "//*[@id=\"default_products_page_container\"]/div[4]/div[2]/form/div[2]/div[1]/span/input")
+	WebElement add_iPhone;
+
+	@FindBy(xpath = "//*[@id=\"default_products_page_container\"]/div[4]/div[2]/form/div[2]/div[1]/div[2]/p")
+	WebElement successText2;
+
+	@FindBy(css = "#header_cart > a > em.count")
+	WebElement checkItems;
+
+	@FindBy(xpath = "html/body/div[2]/div/div/header/div[1]/a")
+	WebElement checkout;
+
+	public void buyiMacs() {
+		Actions builder = new Actions(driver);
+		Action buyFirstItem = builder.moveToElement(productCategory).build();
+		buyFirstItem.perform();
+
+		wait.until(ExpectedConditions.visibilityOf(iMacs));
 		iMacs.click();
-		addToCart2.click();
-		Checkout.click();
-	}
-	
-//	public static ProductPage getLocatorClass(WebDriver driver)	{
-//		return PageFactory.initElements(driver, ProductPage.class);
-//	}
-	
-	// ****verifikacija
-	
-//verifikacija za ProductPage je u CheckOutPageTest
 
+		wait.until(ExpectedConditions.visibilityOf(add_iMac));
+		add_iMac.click();
+	}
+
+	public String isTextAt() {
+		wait.until(ExpectedConditions.visibilityOf(successText));
+		return successText.getText();
+	}
+
+	public void buyiPhone() {
+		Actions builder = new Actions(driver);
+		Action buySecondItem = builder.moveToElement(productCategory).build();
+		buySecondItem.perform();
+
+		wait.until(ExpectedConditions.visibilityOf(iPhones));
+		iPhones.click();
+
+		wait.until(ExpectedConditions.visibilityOf(add_iPhone));
+		add_iPhone.click();
+
+	}
+
+	public String isText2At() {
+		wait.until(ExpectedConditions.visibilityOf(successText2));
+		return successText2.getText();
+	}
+
+	public boolean isCheckItems() {
+		wait.until(ExpectedConditions.textToBePresentInElement(checkItems, "2"));
+		return checkItems.isDisplayed();
+	}
+
+	public void isCheckout() {
+		wait.until(ExpectedConditions.visibilityOf(checkout));
+		checkout.click();
+	}
 
 }

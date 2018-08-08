@@ -1,10 +1,8 @@
 package tests;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertTrue;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
-
 import pages.CheckOutPage;
 import pages.HomePage;
 import pages.MyProfilePage;
@@ -17,24 +15,15 @@ public class MyProfilePageTest extends Browser {
 	CheckOutPage checkout;
 	ProfilePage profile;
 	MyProfilePage myprofile;
-	
+
 	@Test(priority = 4)
-  public void goToMyProfile() {
+	public void goToMyProfile() {
 		myprofile = new MyProfilePage(driver);
 		myprofile.submitAccount();
-		
-	assertTrue(myprofile.ishasPopUpMessage());
-			
 		myprofile.fillInData("Zoran", "Vatres");
-		
 		myprofile.submitUpdate();
-		
-	
-		
 		myprofile.submitLogOut();
-		
+		myprofile.toLogOut();
 		assertTrue(myprofile.logOutMess());
-		
-		
-  }
+	}
 }

@@ -14,17 +14,12 @@ public class ProfilePageTest extends Browser {
 	CheckOutPage checkout;
 	ProfilePage profile;
 	MyProfilePage myprofile;
-	
 
-	 
-  @Test(priority = 3)
-  public void goToProfile() {
-  
+	@Test(priority = 3)
+	public void goToProfile() {
 		profile = new ProfilePage(driver);
 		profile.submit();
 		profile.fillInData("zoranvatres@gmail.com", "ee9ECW4#YGolOSd2");
 		profile.submitBtn();
-//		
-	  
-  }
+	}
 }

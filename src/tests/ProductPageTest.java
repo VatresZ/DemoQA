@@ -1,10 +1,7 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.junit.Assert;
 import org.testng.annotations.Test;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import pages.CheckOutPage;
 import pages.HomePage;
 import pages.MyProfilePage;
@@ -17,12 +14,15 @@ public class ProductPageTest extends Browser {
 	CheckOutPage checkout;
 	ProfilePage profile;
 	MyProfilePage myprofile;
- 
+
 	@Test(priority = 1)
 	public void goToProduct() {
-//		driver.get("http://store.demoqa.com/");
 		product = new ProductPage(driver);
-		product.submit();
+		product.buyiMacs();
+		product.isTextAt();
+		product.buyiPhone();
+		product.isText2At();
+		Assert.assertTrue(product.isCheckItems());
+		product.isCheckout();
 	}
-	
 }

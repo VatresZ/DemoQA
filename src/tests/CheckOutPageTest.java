@@ -1,11 +1,6 @@
 package tests;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
-
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
-
 import pages.CheckOutPage;
 import pages.HomePage;
 import pages.MyProfilePage;
@@ -21,20 +16,11 @@ public class CheckOutPageTest extends Browser {
 
 	@Test(priority = 2)
 	public void goToCheckBox() {
-		
-		assertTrue(checkout.ispricedisplayMessage());
 		checkout = new CheckOutPage(driver);
-		checkout.submitCheck();
-
 		checkout.fillInData("3");
-
 		checkout.submitUpdate();
-
 		checkout.submitRemove();
+		checkout.ispricedisplayMessage();
 
-//		  assertEquals(checkout.getSuccessMessage(), "Your profile was successfully updated.");  assertTrue(home.isPodMessage());
-		
-		
-		
 	}
 }
