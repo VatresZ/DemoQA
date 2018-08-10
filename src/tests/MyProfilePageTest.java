@@ -20,7 +20,7 @@ public class MyProfilePageTest extends Browser {
 	public void goToMyProfile() {
 		myprofile = new MyProfilePage(driver);
 		myprofile.submitAccount();
-		myprofile.fillInData("Zoran", "Vatres");
+		myprofile.fillInData("Dragan", "Draganic");
 		myprofile.submitUpdate();
 		myprofile.submitLogOut();
 		myprofile.toLogOut();

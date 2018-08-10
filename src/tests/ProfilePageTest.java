@@ -19,7 +19,7 @@ public class ProfilePageTest extends Browser {
 	public void goToProfile() {
 		profile = new ProfilePage(driver);
 		profile.submit();
-		profile.fillInData("zoranvatres@gmail.com", "ee9ECW4#YGolOSd2");
+		profile.fillInData("test@gmail.com", "ee9ECW4#YG");
 		profile.submitBtn();
 	}
 }
